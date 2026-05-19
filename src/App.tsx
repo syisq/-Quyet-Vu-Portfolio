@@ -55,19 +55,19 @@ const CAREER_TIMELINE = [
   {
     period: 'July 2023 – July 2025',
     company: 'FPT Software Korea',
-    role: 'Technical Project Coordinator / Delivery Lead',
-    description: 'Governed delivery execution for LG.com Global (40+ sites). Managed a hybrid scope covering Technical BA, Product Ownership assistance, and QA Governance to ensure zero-defect releases.',
+    role: 'Delivery Lead & Bridge Coordinator',
+    description: 'Facilitated global delivery execution for LG.com (40+ sites). Acted as the primary bridge for requirement structuring, cross-team alignment, and release coordination.',
     achievements: [
-      'Orchestrated end-to-end SDLC for 200+ global deployments',
-      'Hybrid Scope: Requirements Refinement (BA) + Timeline Audit (PM) + UAT Validation (QA)',
-      'Established the "Zero-Ambiguity" AC protocol, slashing rework by 30%'
+      'Maximized delivery throughput for 200+ global releases',
+      'Communication Hub: HQ Requirement Alignment + Process Compliance + UAT Oversight',
+      'Standardized AC refinement protocols, reducing rework by 30%'
     ]
   },
   {
     period: 'July 2025 – Present',
     company: 'Skill & Portfolio Growth',
-    role: 'Ops Process Consultant',
-    description: 'Optimizing digital service operations for startups while mastering SQL, GA4, and technical analytical workflows (e.g. OneDrop, Toss).',
+    role: 'Process & Operations Facilitator',
+    description: 'Optimizing digital service operations for startups while refining documentation and operational workflows.',
     achievements: [
       'SQL / Google Analytics Certification',
       'Incident Escalation Playbook development',
@@ -89,18 +89,18 @@ const CAREER_TIMELINE = [
 
 const METHODOLOGY = [
   {
-    title: 'Requirement Governance',
-    desc: 'Acting as a Technical BA/PO bridge to transform abstract business goals into rigorous, developer-ready User Stories and AC.',
+    title: 'Discovery & Alignment',
+    desc: 'Translating high-level business goals into structured, execution-ready requirements while ensuring stakeholder consensus.',
     icon: <FileSearch className="h-5 w-5 text-blue-500" />
   },
   {
-    title: 'Lifecycle Orchestration',
-    desc: 'Managing the "Golden Path" between HQ Stakeholders, UI/UX teams, and Offshore Devs to eliminate dependency bottlenecks.',
+    title: 'Global Delivery Coordination',
+    desc: 'Harmonizing the workflow between HQ teams and offshore execution to resolve bottlenecks and maintain timeline integrity.',
     icon: <Users className="h-5 w-5 text-purple-500" />
   },
   {
-    title: 'Risk & Traceability',
-    desc: 'Enforcing strict version control, decision logs, and QA protocols to maintain 99%+ release stability across global regions.',
+    title: 'Process Integrity & QA',
+    desc: 'Maintaining rigorous documentation and QA oversight to ensure regional compliance and standard-exceeding release quality.',
     icon: <GitBranch className="h-5 w-5 text-emerald-500" />
   }
 ];
@@ -129,15 +129,15 @@ const EDUCATION = [
 const SKILLS_MATRIX = [
   { category: 'Languages', items: ['Korean (Fluent/TOPIK 6)', 'Vietnamese (Native)', 'English (Professional)', 'Dutch (Learning)'] },
   { category: 'Product & Project', items: ['Product Coordination', 'Backlog Prioritization', 'Roadmap Support', 'Stakeholder Management'] },
-  { category: 'Technical Exposure', items: ['API Integration', 'System Behavior Analysis', 'Deployment Validation', 'SQL (Queries)'] }
+  { category: 'Discovery & Verification', items: ['Requirement Mapping', 'Edge-case Validation', 'UAT Governance', 'Basic SQL Analytics'] }
 ];
 
 const CASE_STUDIES = [
   {
     id: 'case-1',
     title: 'Cross-Page Component Portability & API Alignment',
-    role: 'Technical Delivery Lead',
-    description: 'Ensuring state consistency for the "Our Picks For You" recommendation unit across PBP and Basket.',
+    role: 'Delivery Lead',
+    description: 'Ensuring consistent user experiences for localized recommendation units across critical commerce pages.',
     challenge: 'High-level request for "Our Picks For You" on the Product Browsing Page (PBP) lacked technical specs for how the component should inherit context when a user transitions to the Basket. The PBP use case required Category-based filtering, while the Mini-Cart/Basket required SKU-association.',
     action: 'Collaborated with FE leads to abstract common logic into a shared "ProductCard" component with lazy-loading for image assets. Negotiated with the Data Team to expose a unified Recommendation API endpoint capable of handling both Category-level and Item-level payloads.',
     results: 'Enabled a non-interruptive cross-sell journey; Eliminated UI drift between PBP and Basket; Reduced developmental rework by 30% through early component abstraction.',
@@ -169,8 +169,8 @@ const CASE_STUDIES = [
   {
     id: 'case-3',
     title: 'Precision Hotfix Management & Locale Integrity',
-    role: 'Crisis Management & Technical Lead',
-    description: 'Managing high-severity production hotfixes regarding PBP logic failures and locale-leaks under extreme timezone constraints.',
+    role: 'Release Coordinator & SPOC',
+    description: 'Managing high-priority production resolutions and locale integrity under tight timezone constraints.',
     challenge: 'A critical "Locale Leak" was detected where the CA-FR (Canada-French) site was displaying text in another regional locale (CZ). Simultaneously, the "Buy Now" CTA on the PBP was intermittent for high-traffic categories.',
     action: 'Rapidly audited the CDN cache headers and localized i18n mapping files. Identified a corrupted deployment manifest. Documented a zero-ambiguity reproduction path and fix specs within 30 mins. Mobilized a key Senior Developer via established trust-based relationship to execute an out-of-hours patch during a local holiday.',
     results: 'Restored core conversion funnel (PBP buttons) and brand integrity; Restructured the "Emergency Localization Audit" process to prevent cross-locale string leaks.',
@@ -487,11 +487,11 @@ export default function App() {
               </div>
               <h1 className="font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
                 Vu Thi Quyet (우수연)<br/>
-                <span className="text-blue-600 text-3xl sm:text-5xl">Global Delivery Architect & Bridge PM</span>
+                <span className="text-blue-600 text-3xl sm:text-5xl">Global Delivery Lead & Bridge PM</span>
               </h1>
               <p className="mt-8 text-xl text-slate-600 leading-relaxed max-w-3xl">
                 Specialized in **Cross-Functional Bridge Management** for enterprise e-commerce. 
-                Ownership of the full delivery lifecycle—bridging complex Korean HQ requirements with high-velocity Vietnam development execution.
+                Orchestrating the delivery lifecycle—aligning complex stakeholder requirements with high-velocity offshore execution.
               </p>
               
               <div className="mt-12 flex flex-wrap gap-8">
@@ -756,7 +756,7 @@ export default function App() {
           <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <Globe className="h-5 w-5 text-blue-400" />
-              <span className="font-display font-bold">Vu Thi Quyet · Bridge TDM</span>
+              <span className="font-display font-bold">Vu Thi Quyet · Delivery Coordinator</span>
             </div>
             <p className="text-sm text-slate-500">© 2026 Structured Delivery Portfolio</p>
           </div>

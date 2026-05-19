@@ -24,7 +24,10 @@ import {
   Terminal,
   FileCode,
   Zap,
-  ArrowRight
+  ArrowRight,
+  GraduationCap,
+  FileSearch,
+  GitBranch
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -46,6 +49,87 @@ const PERFORMANCE_DATA = [
   { name: 'Rework Rate', before: 45, after: 15, unit: '%' },
   { name: 'Lead Time', before: 14, after: 9, unit: 'days' },
   { name: 'Sprint Stability', before: 60, after: 92, unit: '%' },
+];
+
+const CAREER_TIMELINE = [
+  {
+    period: 'July 2023 – July 2025',
+    company: 'FPT Software Korea',
+    role: 'Technical Project Coordinator / Delivery Lead',
+    description: 'Governed delivery execution for LG.com Global (40+ sites). Managed a hybrid scope covering Technical BA, Product Ownership assistance, and QA Governance to ensure zero-defect releases.',
+    achievements: [
+      'Orchestrated end-to-end SDLC for 200+ global deployments',
+      'Hybrid Scope: Requirements Refinement (BA) + Timeline Audit (PM) + UAT Validation (QA)',
+      'Established the "Zero-Ambiguity" AC protocol, slashing rework by 30%'
+    ]
+  },
+  {
+    period: 'July 2025 – Present',
+    company: 'Skill & Portfolio Growth',
+    role: 'Ops Process Consultant',
+    description: 'Optimizing digital service operations for startups while mastering SQL, GA4, and technical analytical workflows (e.g. OneDrop, Toss).',
+    achievements: [
+      'SQL / Google Analytics Certification',
+      'Incident Escalation Playbook development',
+      'Portfolio standardization for Bridge PM roles'
+    ]
+  },
+  {
+    period: '2016 – 2020',
+    company: 'Freelance Technical Interpreter',
+    role: 'Korean-Vietnamese Business Strategist',
+    description: 'Facilitating cross-border technical discussions and negotiations. Specialized in bridging the gap for IT industry talent sourcing and technical infrastructure projects.',
+    achievements: [
+      'Technical negotiation lead',
+      'Multi-industry market entry support',
+      'Localization architecture bridge'
+    ]
+  }
+];
+
+const METHODOLOGY = [
+  {
+    title: 'Requirement Governance',
+    desc: 'Acting as a Technical BA/PO bridge to transform abstract business goals into rigorous, developer-ready User Stories and AC.',
+    icon: <FileSearch className="h-5 w-5 text-blue-500" />
+  },
+  {
+    title: 'Lifecycle Orchestration',
+    desc: 'Managing the "Golden Path" between HQ Stakeholders, UI/UX teams, and Offshore Devs to eliminate dependency bottlenecks.',
+    icon: <Users className="h-5 w-5 text-purple-500" />
+  },
+  {
+    title: 'Risk & Traceability',
+    desc: 'Enforcing strict version control, decision logs, and QA protocols to maintain 99%+ release stability across global regions.',
+    icon: <GitBranch className="h-5 w-5 text-emerald-500" />
+  }
+];
+
+const EDUCATION = [
+  {
+    school: 'Seoul National University',
+    degree: "Master of Science (MSc) in Business Administration",
+    major: 'Minor: Marketing Management',
+    period: 'Graduated Aug 2022'
+  },
+  {
+    school: 'Vietnam National University (Hanoi)',
+    degree: 'Bachelor of Arts (BA)',
+    major: 'Korean Language',
+    period: 'Graduated Aug 2017'
+  },
+  {
+    school: 'Chung Ang University',
+    degree: 'Exchange Program',
+    major: 'Mass Communication',
+    period: 'Mar 2015 – Dec 2015'
+  }
+];
+
+const SKILLS_MATRIX = [
+  { category: 'Languages', items: ['Korean (Fluent/TOPIK 6)', 'Vietnamese (Native)', 'English (Professional)', 'Dutch (Learning)'] },
+  { category: 'Product & Project', items: ['Product Coordination', 'Backlog Prioritization', 'Roadmap Support', 'Stakeholder Management'] },
+  { category: 'Technical Exposure', items: ['API Integration', 'System Behavior Analysis', 'Deployment Validation', 'SQL (Queries)'] }
 ];
 
 const CASE_STUDIES = [
@@ -138,48 +222,6 @@ const TICKETS = [
     },
     apiDoc: 'PATCH /v2/checkout/cart-summary (Partial updates for Voucher/Address)',
     outcome: 'Eliminated architectural bottlenecks by aligning Designers and Publishers 1 week prior to Sprint Start; ensured GCS parity before FE coding.'
-  },
-  {
-    id: 'LGC-HOTFIX-92',
-    title: 'Emergency: PBP "Buy Now" Failure & Locale Leak (CA-FR)',
-    status: 'Done',
-    priority: 'Critical',
-    locale: 'CA-FR (Canada - French)',
-    userStory: 'As a global shopper, I need the Add-to-Basket/Buy-Now actions to function and the site language to match my region so I can complete a trusted purchase.',
-    ac: [
-      'Correct the corrupted i18n mapping for CA-FR locale path in GCS (Global Content Solution).',
-      'Fix the PBP Price Summary calculation causing button-disable state (NaN error in tax calculation for Quebec).',
-      'Clear CloudFront cache for translated components.',
-      'Cross-browser verification (Safari/Chrome/Firefox).'
-    ],
-    brd: {
-      asIs: 'CA-FR GCS entry incorrectly pointed to CZ (Czech) JSON file. "Buy Now" button stuck in "Loading" state because GST/PST tax logic failed for null shipping zones.',
-      toBe: 'Re-route CA-FR assets to correct CDN bucket; Apply safety guard for tax calculation: `(val || 0)`.',
-      mockup: 'PBP Card Fix: Correcting "Koupit" (Czech) back to "Acheter Maintenant" (French) and enabling the red primary CTA.'
-    },
-    apiDoc: 'Bust Cache: `aws cloudfront create-invalidation --distribution-id=E123... --paths "/ca_fr/pbp/*"`',
-    outcome: 'Technical specification provided to dev team in <45 minutes; restored full functionality during off-shore holiday hours.'
-  },
-  {
-    id: 'LGC-ENV-CONFLICT',
-    title: 'Revenue Blocker: Staging branch conflict resolution (Vendor B)',
-    status: 'Done',
-    priority: 'High',
-    locale: 'EU (UK/DE) Subsidiaries',
-    userStory: 'As a commerce lead, I need the urgent PDP Banner update deployed to production without waiting for the delayed vendor release cycle.',
-    ac: [
-      'Cherry-pick commit #af82de into hotfix/revenue-pdp branch.',
-      'Implement runtime feature toggle: `ENABLE_LIFESTYLE_BANNER_v3=true`.',
-      'Verify zero-regression on `global-pdp-layout.scss`.',
-      'Document the "Staging Reset" protocol for cross-vendor sync.'
-    ],
-    brd: {
-      asIs: 'Master-Staging branch contains unmerged GNB (Global Navigation Bar) code from Vendor B that breaks the PDP layout on IE11/Legacy browsers.',
-      toBe: 'Isolate PDP Banner as a "Floating Component" with its own entry point to bypass GNB dependencies; Use LG-Config-Service to gate the feature.',
-      mockup: 'Git Workflow: [Feature/PDP_Banner] -> [Hotfix/Production] (Bypassing Staging-Pollution). CI/CD Status: Success.'
-    },
-    apiDoc: 'Config Endpoint: `GCS_CONFIG_URL/features.json` -> `{"lifestyle_banner": {"enabled": true, "regions": ["UK", "DE"]}}`',
-    outcome: 'Negotiated temporary rollback with vendor; unblocked £200k+ revenue campaign within 24 hours.'
   }
 ];
 
@@ -203,7 +245,7 @@ const STANDARDS = [
 
 // --- Components ---
 
-const StandardCard = ({ standard }: { standard: typeof STANDARDS[0] }) => (
+const StandardCard = ({ standard }: { standard: typeof STANDARDS[0], key?: React.Key }) => (
   <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
     <div className="flex items-center gap-3 mb-4">
       <div className="p-2 bg-slate-50 rounded-lg">
@@ -222,8 +264,6 @@ const StandardCard = ({ standard }: { standard: typeof STANDARDS[0] }) => (
   </div>
 );
 
-// --- Components ---
-
 const Navbar = () => (
   <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
     <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -231,13 +271,13 @@ const Navbar = () => (
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white font-bold text-lg">
           <Globe className="h-5 w-5" />
         </div>
-        <span className="font-display text-xl font-bold tracking-tight">Delivery Portfolio</span>
+        <span className="font-display text-xl font-bold tracking-tight">Quyet Vu Portfolio</span>
       </div>
       <div className="hidden space-x-8 text-sm font-medium text-slate-600 md:flex">
         <a href="#overview" className="hover:text-slate-900 transition-colors">Overview</a>
-        <a href="#cases" className="hover:text-slate-900 transition-colors">Case Studies</a>
+        <a href="#experience" className="hover:text-slate-900 transition-colors">Experience</a>
+        <a href="#cases" className="hover:text-slate-900 transition-colors">Cases</a>
         <a href="#process" className="hover:text-slate-900 transition-colors">Process</a>
-        <a href="#contact" className="px-4 py-2 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all">Download Resume</a>
       </div>
     </div>
   </nav>
@@ -250,7 +290,7 @@ const SectionHeading = ({ children, subtitle }: { children: React.ReactNode; sub
   </div>
 );
 
-const JiraTicket = ({ ticket }: { ticket: typeof TICKETS[0] }) => {
+const JiraTicket = ({ ticket }: { ticket: typeof TICKETS[0], key?: React.Key }) => {
   const [activeTab, setActiveTab] = useState<'details' | 'brd' | 'api'>('details');
 
   return (
@@ -393,29 +433,27 @@ const WorkflowDiagram = () => (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center relative z-10">
       <div className="p-4 rounded-lg bg-white/5 border border-white/10 text-center">
         <Users className="h-6 w-6 mx-auto mb-2 text-blue-400" />
-        <p className="text-xs font-bold font-display uppercase tracking-widest text-slate-400">Stakeholder</p>
-        <p className="text-sm mt-1">Korea HQ / Legal</p>
+        <p className="text-xs font-bold font-display uppercase tracking-widest text-slate-400">HQ Stakeholder</p>
+        <p className="text-sm mt-1">PM/PO/QA (Korea)</p>
       </div>
       
-      <div className="flex justify-center">
-        <ArrowRight className="h-6 w-6 text-slate-600 hidden md:block" />
-        <ChevronRight className="h-6 w-6 text-slate-600 md:hidden" />
+      <div className="flex justify-center text-slate-700">
+        <ChevronRight className="h-6 w-6" />
       </div>
 
       <div className="p-5 rounded-lg bg-blue-600 border border-blue-400 text-center shadow-xl shadow-blue-900/20">
         <ShieldCheck className="h-6 w-6 mx-auto mb-2 text-white" />
         <p className="text-xs font-bold font-display uppercase tracking-widest text-blue-100 italic">Centralized Bridge</p>
-        <p className="text-sm font-bold mt-1">TDM (The Hub)</p>
+        <p className="text-sm font-bold mt-1">Bridge PM (Vu Thi Quyet)</p>
         <ul className="text-[10px] mt-2 text-blue-100 text-left list-disc list-inside">
-          <li>Alignment</li>
-          <li>Refinement</li>
+          <li>Requirement Structuring</li>
+          <li>Conflict Negotiation</li>
           <li>Risk Mitigations</li>
         </ul>
       </div>
 
-      <div className="flex justify-center">
-        <ArrowRight className="h-6 w-6 text-slate-600 hidden md:block" />
-        <ChevronRight className="h-6 w-6 text-slate-600 md:hidden" />
+      <div className="flex justify-center text-slate-700">
+        <ChevronRight className="h-6 w-6" />
       </div>
 
       <div className="p-4 rounded-lg bg-white/5 border border-white/10 text-center">
@@ -436,53 +474,41 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-32 lg:pt-32 lg:pb-48 bg-white" id="overview">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute left-[50%] top-0 h-[1000px] w-[1000px] -translate-x-[50%] rounded-full bg-slate-50 [mask-image:radial-gradient(closest-side,white,transparent)]" />
-        </div>
-        
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600 mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                </span>
-                Now delivering global scale UX
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 mb-6 uppercase tracking-widest">
+                <ShieldCheck className="h-3 w-3" />
+                Single Point of Contact (SPOC)
               </div>
               <h1 className="font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
-                Bridging Chaos with <span className="text-blue-600">Structured Delivery.</span>
+                Vu Thi Quyet (우수연)<br/>
+                <span className="text-blue-600 text-3xl sm:text-5xl">Global Delivery Architect & Bridge PM</span>
               </h1>
-              <p className="mt-8 text-xl text-slate-600 leading-relaxed">
-                Technical Delivery Manager specialized in high-complexity global e-commerce systems. 
-                Single point of contact for cross-continental execution (Korea ⟷ Vietnam).
+              <p className="mt-8 text-xl text-slate-600 leading-relaxed max-w-3xl">
+                Specialized in **Cross-Functional Bridge Management** for enterprise e-commerce. 
+                Ownership of the full delivery lifecycle—bridging complex Korean HQ requirements with high-velocity Vietnam development execution.
               </p>
               
-              <div className="mt-10 flex flex-wrap gap-4">
-                <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
-                  <Layout className="h-5 w-5 text-slate-400" />
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Scale</p>
-                    <p className="font-semibold">Global LG.com</p>
-                  </div>
+              <div className="mt-12 flex flex-wrap gap-8">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Education</p>
+                  <p className="font-bold flex items-center gap-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Seoul_National_University_logo.svg" className="h-5" />
+                    SNU MSc (Marketing)
+                  </p>
                 </div>
-                <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
-                  <MessageSquare className="h-5 w-5 text-slate-400" />
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Communcation</p>
-                    <p className="font-semibold">KR · EN · VN</p>
-                  </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Languages</p>
+                  <p className="font-bold">KR (TOPIK 6) · VN (Native) · EN (IH)</p>
                 </div>
-                <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
-                  <BarChart3 className="h-5 w-5 text-slate-400" />
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Metric</p>
-                    <p className="font-semibold">-30% Rework</p>
-                  </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Key Exp</p>
+                  <p className="font-bold">Global LG.com (2yr)</p>
                 </div>
               </div>
             </motion.div>
@@ -490,57 +516,64 @@ export default function App() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-slate-50 py-24">
+      {/* Experience Timeline */}
+      <section className="bg-slate-50 py-24" id="experience">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading subtitle="Quantifiable results from process standardization and communication alignment initiatives.">
-            Operational Excellence in Numbers
+          <SectionHeading subtitle="Proven track record in managing critical delivery cycles for high-traffic global platforms.">
+            Career Journey
           </SectionHeading>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="h-[350px] w-full bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={PERFORMANCE_DATA}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
-                  <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
-                  <Tooltip 
-                    cursor={{fill: '#f8fafc'}}
-                    contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
-                  />
-                  <Legend verticalAlign="top" iconType="circle" wrapperStyle={{paddingBottom: '20px'}} />
-                  <Bar name="Before Optimization" dataKey="before" fill="#cfd9df" radius={[4, 4, 0, 0]} barSize={40} />
-                  <Bar name="After (My Delivery Model)" dataKey="after" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={40}>
-                    {PERFORMANCE_DATA.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={index === 0 ? '#f43f5e' : index === 1 ? '#3b82f6' : '#10b981'} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {CAREER_TIMELINE.map((exp, i) => (
+              <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 font-mono text-[40px] font-bold text-slate-50 opacity-20 group-hover:opacity-40 transition-opacity">0{i+1}</div>
+                <p className="text-xs font-bold text-blue-600 mb-4">{exp.period}</p>
+                <h4 className="text-xl font-bold font-display mb-1">{exp.company}</h4>
+                <p className="text-sm font-semibold text-slate-500 mb-4">{exp.role}</p>
+                <p className="text-sm text-slate-600 mb-6 leading-relaxed">{exp.description}</p>
+                <div className="space-y-2">
+                  {exp.achievements.map((ach, j) => (
+                    <div key={j} className="flex items-center gap-2 text-xs font-bold text-slate-800">
+                      <Zap className="h-3 w-3 text-emerald-500" />
+                      {ach}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 pt-16 border-t border-slate-200">
+            <div>
+              <h5 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6">Education</h5>
+              <div className="space-y-6">
+                {EDUCATION.map((edu, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="h-10 w-10 shrink-0 rounded-lg bg-slate-100 flex items-center justify-center">
+                      <GraduationCap className="h-5 w-5 text-slate-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900 leading-none mb-1">{edu.school}</p>
+                      <p className="text-[10px] text-slate-500 font-medium">{edu.degree} · {edu.major}</p>
+                      <p className="text-[10px] text-slate-400 mt-1">{edu.period}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            
-            <div className="space-y-8">
-              <div>
-                <h4 className="text-xl font-bold flex items-center gap-2 mb-2">
-                  <Clock className="h-5 w-5 text-blue-600" />
-                  Lead Time Shortening
-                </h4>
-                <p className="text-slate-600">Reduced the average "Concept-to-Code" cycle from 14 to 9 days by eliminating manual re-clarification stages through high-fidelity User Stories.</p>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold flex items-center gap-2 mb-2">
-                  <AlertCircle className="h-5 w-5 text-rose-600" />
-                  Rework Minimization
-                </h4>
-                <p className="text-slate-600">Established "Acceptance Criteria Review" workshops, cutting down rework by 30% for high-complexity localized components.</p>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold flex items-center gap-2 mb-2">
-                  <ShieldCheck className="h-5 w-5 text-emerald-600" />
-                  Sprint Stability
-                </h4>
-                <p className="text-slate-600">Boosted sprint predictability to 92% by implementing a proactive dependency check protocol early in the discovery phase.</p>
-              </div>
+            <div className="grid grid-cols-2 gap-8">
+              {SKILLS_MATRIX.map((skill, i) => (
+                <div key={i} className={i === 2 ? "col-span-2" : ""}>
+                  <h5 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">{skill.category}</h5>
+                  <div className="flex flex-wrap gap-2">
+                    {skill.items.map((item, j) => (
+                      <span key={j} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -549,8 +582,8 @@ export default function App() {
       {/* Case Studies */}
       <section className="bg-white py-24" id="cases">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading subtitle="Real-world scenarios where structured delivery turned chaos into successful releases.">
-            Solving Multi-Complex System Challenges
+          <SectionHeading subtitle="Deep dives into complex delivery scenarios where I acted as the strategic bridge.">
+            Critical Case Studies
           </SectionHeading>
 
           <div className="flex flex-col lg:flex-row gap-8">
@@ -600,13 +633,13 @@ export default function App() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div>
                         <h5 className="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-3">The Challenge</h5>
-                        <p className="text-slate-600 leading-relaxed italic border-l-4 border-rose-200 pl-4">
+                        <p className="text-sm text-slate-600 leading-relaxed italic border-l-4 border-rose-200 pl-4">
                           {CASE_STUDIES[activeCase].challenge}
                         </p>
                       </div>
                       <div>
                         <h5 className="text-[10px] font-black uppercase tracking-widest text-blue-500 mb-3">TDM Execution</h5>
-                        <p className="text-slate-600 leading-relaxed">
+                        <p className="text-sm text-slate-600 leading-relaxed">
                           {CASE_STUDIES[activeCase].action}
                         </p>
                       </div>
@@ -617,8 +650,11 @@ export default function App() {
                         <CheckCircle2 className="h-5 w-5" />
                         Outcome
                       </div>
-                      <p className="text-emerald-900">{CASE_STUDIES[activeCase].results}</p>
+                      <p className="text-emerald-900 text-sm font-medium">{CASE_STUDIES[activeCase].results}</p>
                     </div>
+                    <p className="mt-4 text-[10px] text-slate-400 italic">
+                      * Methodology Demonstration: Case study represents a reconstructed abstraction of delivery workflows to protect client confidentiality.
+                    </p>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -627,31 +663,69 @@ export default function App() {
         </div>
       </section>
 
-      {/* Workflow & Artifacts */}
+      {/* Metrics & Workflow */}
       <section className="bg-slate-50 py-24" id="process">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading subtitle="Transforming requirements into deployment-ready assets through rigorous standardization.">
-            Systemic Bridge Architecture
+          <SectionHeading subtitle="Standardizing the delivery lifecycle to eliminate ambiguity and optimize throughput.">
+            Bridge Operations & Standardization
           </SectionHeading>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+            {METHODOLOGY.map((pillar, i) => (
+              <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div className="p-3 bg-slate-50 rounded-xl w-fit mb-4">
+                  {pillar.icon}
+                </div>
+                <h4 className="text-lg font-bold mb-2">{pillar.title}</h4>
+                <p className="text-sm text-slate-500 leading-relaxed">{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
+            <div className="h-[350px] w-full bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-8 block">Key Impact Metrics</label>
+              <ResponsiveContainer width="100%" height="90%">
+                <BarChart data={PERFORMANCE_DATA}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} />
+                  <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} />
+                  <Tooltip 
+                    cursor={{fill: '#f8fafc'}}
+                    contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
+                  />
+                  <Bar dataKey="after" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={40}>
+                    {PERFORMANCE_DATA.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={index === 0 ? '#f43f5e' : index === 1 ? '#3b82f6' : '#10b981'} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="space-y-4">
               <WorkflowDiagram />
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
+                 <p className="text-xs text-slate-400 italic font-mono">"My goal is to create a Zero-Ambiguity environment where every requirement is execution-ready the moment it hits the developer."</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {STANDARDS.map((std, i) => (
                   <StandardCard key={i} standard={std} />
                 ))}
-              </div>
             </div>
 
             <div className="space-y-6">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">Requirement Clarification Sample</h4>
+              <h4 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-2">Requirement Articulation Samples</h4>
               {TICKETS.map(ticket => (
                 <JiraTicket key={ticket.id} ticket={ticket} />
               ))}
-              <div className="p-6 rounded-2xl bg-slate-900 text-slate-400 text-xs italic">
-                * Note: Reconstructed for portfolio purposes. Actual data anonymized and protected.
+              <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 text-[10px] text-slate-500 italic leading-relaxed">
+                <span className="font-bold block mb-1 uppercase tracking-tighter">Confidentiality Guard:</span>
+                Reconstructed functional abstractions demonstrating TDM/BA methodology. No proprietary site assets or real-time data are exposed.
               </div>
             </div>
           </div>
@@ -661,27 +735,30 @@ export default function App() {
       {/* Footer / CTA */}
       <footer className="bg-slate-900 text-white py-24" id="contact">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-4xl font-bold mb-8">Ready to Scale Your Delivery Pipeline?</h2>
+          <h2 className="font-display text-4xl font-bold mb-8">Ready to Scale Your Global Delivery?</h2>
           <p className="text-slate-400 max-w-2xl mx-auto mb-12 text-lg">
-            Experienced in managing transition phases, offshore scaling, and multi-team dependency orchestration. 
-            Let's build a more stable development cycle together.
+             F-2 Residing Visa holder (unrestricted employment).<br/>
+             Available for regional travel (KR/VN/Global).
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-500 transition-all flex items-center gap-2">
+          <div className="flex flex-wrap justify-center gap-6">
+            <div className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-slate-100 transition-all cursor-pointer">
+              ursyisq@gmail.com
+            </div>
+            <div className="px-8 py-4 border border-white/20 text-white rounded-full font-bold hover:bg-white/10 transition-all cursor-pointer">
+               Phone upon request
+            </div>
+            <a href="https://linkedin.com/in/quyet-vu-thi" target="_blank" className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-500 transition-all flex items-center gap-2">
               <ExternalLink className="h-5 w-5" />
-              View Full PDF Portfolio
-            </button>
-            <button className="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
-              Connect on LinkedIn
-            </button>
+              LinkedIn Profile
+            </a>
           </div>
           
           <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <Globe className="h-5 w-5 text-blue-400" />
-              <span className="font-display font-bold">Global Delivery Specialist</span>
+              <span className="font-display font-bold">Vu Thi Quyet · Bridge TDM</span>
             </div>
-            <p className="text-sm text-slate-500">© 2026 Portfolio of Technical Delivery & Bridge PM</p>
+            <p className="text-sm text-slate-500">© 2026 Structured Delivery Portfolio</p>
           </div>
         </div>
       </footer>
